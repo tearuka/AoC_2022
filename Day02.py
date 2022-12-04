@@ -10,40 +10,36 @@ inp = [line.split(' ') for line in inp]
 # part 1 : X = rock (1), Y = paper (2), Z = scissors (3)
 # part 2 : X = lose (0), Y = draw (3), Z = win (6)
 
-def game_outcome(line, part):
+def game_outcome(elf, player, part):
     
-    if line[1] == 'X':
-        if line[0] == 'A':
+    if player == 'X':
+        if elf == 'A':
             res = 3 + 1 if part == 1 else 3 + 0
-        elif line[0] == 'B':
+        elif elf == 'B':
             res = 0 + 1 if part == 1 else 1 + 0
-        elif line[0] == 'C':
+        elif elf == 'C':
             res = 6 + 1 if part == 1 else 2 + 0
             
-    elif line[1] == 'Y':
-        if line[0] == 'A':
+    elif player == 'Y':
+        if elf == 'A':
             res = 6 + 2 if part == 1 else 1 + 3
-        elif line[0] == 'B':
+        elif elf == 'B':
             res = 3 + 2 if part == 1 else 2 + 3
-        elif line[0] == 'C':
+        elif elf == 'C':
             res = 0 + 2 if part == 1 else 3 + 3
             
-    elif line[1] == 'Z':
-        if line[0] == 'A':
+    elif player == 'Z':
+        if elf == 'A':
             res = 0 + 3 if part == 1 else 2 + 6
-        elif line[0] == 'B':
+        elif elf == 'B':
             res = 6 + 3 if part == 1 else 3 + 6
-        elif line[0] == 'C':
+        elif elf == 'C':
             res = 3 + 3 if part == 1 else 1 + 6
             
     return res
 
-
 def compute_score(inp, part):
-    total_sum = 0
-    for line in inp:
-        total_sum += game_outcome(line, part)
-    return total_sum
+    return sum(game_outcome(elf, player,  part) for elf, player in inp)
 
 
 # part 1
